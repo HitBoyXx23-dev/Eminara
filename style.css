@@ -93,15 +93,16 @@ footer {
   margin-bottom: 30px;
   opacity: 0.85;
   z-index: 2;
+}
 
-/* === Start Screen Overlay === */
+/* Start Screen */
 #start-screen {
   position: fixed;
   inset: 0;
   display: flex;
   justify-content: center;
   align-items: center;
-  background: rgba(15, 0, 35, 0.92);
+  background: rgba(15, 0, 35, 0.9);
   color: #e8dfff;
   font-size: 1.6em;
   text-shadow: 0 0 15px #b391ff, 0 0 35px #7a5aff;
@@ -110,9 +111,7 @@ footer {
   backdrop-filter: blur(8px);
   transition: opacity 0.5s ease;
 }
-#start-screen:hover {
-  transform: scale(1.05);
-}
+#start-screen:hover { transform: scale(1.05); }
 #start-screen.fade-out {
   opacity: 0;
   pointer-events: none;
