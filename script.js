@@ -55,14 +55,13 @@ const music = document.getElementById("bg-music");
 music.volume = 0;
 music.loop = true;
 
+// Triggered on click
 function startEminara() {
   const screen = document.getElementById("start-screen");
   screen.classList.add("fade-out");
-  setTimeout(() => screen.remove(), 800);
+  setTimeout(() => screen.remove(), 600);
 
   music.play().then(() => {
-    console.log("🎵 Eminara music started");
-    // fade in to full volume
     let vol = 0;
     const fade = setInterval(() => {
       if (vol < 1.0) {
@@ -72,5 +71,5 @@ function startEminara() {
         clearInterval(fade);
       }
     }, 100);
-  });
+  }).catch(err => console.warn("Audio playback blocked:", err));
 }
