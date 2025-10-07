@@ -34,7 +34,6 @@ class Particle {
 }
 
 function initParticles() {
-  particles = [];
   for (let i = 0; i < 100; i++) {
     particles.push(new Particle());
   }
@@ -51,31 +50,27 @@ function animateParticles() {
 }
 animateParticles();
 
-// === Background Music (Autoplay + Fade to Full Volume) ===
+// === Background Music ===
 const music = document.getElementById("bg-music");
 music.volume = 0;
 music.loop = true;
-music.muted = true; // required for autoplay
 
-window.addEventListener("load", async () => {
-  try {
-    await music.play(); // start muted (allowed)
-    console.log("🎵 Eminara music autoplay started (muted)");
+function startEminara() {
+  const screen = document.getElementById("start-screen");
+  screen.classList.add("fade-out");
+  setTimeout(() => screen.remove(), 800);
 
+  music.play().then(() => {
+    console.log("🎵 Eminara music started");
     // fade in to full volume
-    setTimeout(() => {
-      music.muted = false;
-      let vol = 0;
-      const fade = setInterval(() => {
-        if (vol < 1.0) {
-          vol += 0.02;
-          music.volume = vol;
-        } else {
-          clearInterval(fade);
-        }
-      }, 100);
-    }, 800);
-  } catch (err) {
-    console.warn("Autoplay blocked until user interacts.", err);
-  }
-});
+    let vol = 0;
+    const fade = setInterval(() => {
+      if (vol < 1.0) {
+        vol += 0.02;
+        music.volume = vol;
+      } else {
+        clearInterval(fade);
+      }
+    }, 100);
+  });
+}
