@@ -53,29 +53,28 @@ animateParticles();
 
 // === Background Music (Autoplay + Fade to Full Volume) ===
 const music = document.getElementById("bg-music");
-music.volume = 0;        // start silent
+music.volume = 0;
 music.loop = true;
-music.muted = true;      // required for autoplay
+music.muted = true; // required for autoplay
 
 window.addEventListener("load", async () => {
   try {
-    // Start muted (autoplay allowed)
-    await music.play();
+    await music.play(); // start muted (allowed)
     console.log("🎵 Eminara music autoplay started (muted)");
 
-    // Unmute and fade to full volume
+    // fade in to full volume
     setTimeout(() => {
       music.muted = false;
       let vol = 0;
       const fade = setInterval(() => {
-        if (vol < 1.0) {              // full volume = 1.0
+        if (vol < 1.0) {
           vol += 0.02;
           music.volume = vol;
         } else {
           clearInterval(fade);
         }
-      }, 100); // fade speed (100ms per step)
-    }, 500);
+      }, 100);
+    }, 800);
   } catch (err) {
     console.warn("Autoplay blocked until user interacts.", err);
   }
